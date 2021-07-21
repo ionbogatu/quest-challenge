@@ -1,0 +1,8 @@
+<div class="chip">
+    <div class="chip__value">
+        <ng-content></ng-content>
+    </div>
+    <div class="chip__close-button">
+        <fa-icon [icon]="icons.faTimes" (click)="remove.emit(true)"></fa-icon>
+    </div>
+</div>

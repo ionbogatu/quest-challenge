@@ -1,0 +1,74 @@
+$border-radius: 5px;
+
+.dropdown {
+    position: relative;
+    background: #eee;
+    border-radius: $border-radius;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    padding: 7px 10px;
+
+    &__selection {
+        display: flex;
+        flex-wrap:  wrap;
+        align-items: center;
+        width: 280px;
+        padding-right: 5px;
+
+        &-placeholder,
+        &-value {
+            display: inline-block;
+            align-items: center;
+            width: 100%;
+            color: gray;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+    }
+
+    &__caret {
+        padding-top: 5px;
+        transform: rotate(0);
+        transition: transform 0.3s ease-in-out;
+        border-radius: 50%;
+
+        &--open {
+            transform: rotate(180deg);
+        }
+
+        fa-icon {
+            padding: 5px;
+        }
+    }
+
+    &__selection-list {
+        $borderThickness: 2px;
+
+        position: absolute;
+        left: -1px; // -1px because of 1px left border of dropdown
+        width: calc(100% + 2px); // 2px = left and right border of dropdown
+        max-height: 0;
+        background: #eee;
+        border-radius: 0 0 $border-radius $border-radius;
+        border-right: 1px solid rgba(0, 0, 0, 0.2);
+        border-left: 1px solid rgba(0, 0, 0, 0.2);
+        transition: max-height 0.25s ease-out;
+        overflow: hidden;
+
+        &--open {
+            max-height: 400px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        &__divider {
+            $xMargin: 10px;
+
+            width: calc(100% - #{2 * $xMargin});
+            height: $borderThickness;
+            margin: 3px $xMargin 10px $xMargin;
+            border-top: 3px dotted gray;
+        }
+    }
+}

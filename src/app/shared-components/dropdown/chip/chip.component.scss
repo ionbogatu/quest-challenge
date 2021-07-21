@@ -1,0 +1,24 @@
+.chip {
+    display: flex;
+    align-items: center;
+    max-width: 200px;
+    margin-left: 5px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: #c0c0c0;
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+        background: #d3d3d3;
+    }
+
+    &__value {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    &__close-button {
+        margin: 0 0 0 4px;
+    }
+}

@@ -1,0 +1,43 @@
+<div class="dropdown"
+    (click)="toggleDropdown($event)">
+    <div class="dropdown-top d-flex align-items-center">
+        <div class="dropdown__selection">
+            <ng-container *ngIf="selectedOptions.length === 0; else selectedOptionsTemplate">
+                <div class="dropdown__selection-placeholder">
+                    {{ placeholder }}
+                </div>
+            </ng-container>
+            <ng-template #selectedOptionsTemplate>
+                <ng-container *ngIf="!multiple; else multipleValuesTemplate">
+                    <div class="dropdown__selection-value">
+                        {{ selectedOptions[0].value }}
+                    </div>
+                </ng-container>
+                <ng-template #multipleValuesTemplate>
+                    <ng-container *ngFor="let option of selectedOptions; let i = index">
+                        <div class="chip-wrapper mt-1">
+                            <chip (remove)="removeChip(i)">{{ option.value }}</chip>
+                        </div>
+                    </ng-container>
+                </ng-template>
+            </ng-template>
+        </div>
+        <div class="dropdown__caret d-flex"
+            [class.dropdown__caret--open]="isDropdownOpen">
+            <fa-icon [icon]="icons.faChevronDown" class="m-auto"></fa-icon>
+        </div>
+    </div>
+
+    <div class="dropdown__selection-list"
+        [class.dropdown__selection-list--open]="isDropdownOpen"
+        #dropdownListRef>
+        
+        <div class="dropdown__selection-list__divider"></div>
+
+        <selection-search-list
+            [options]="options"
+            [multiple]="multiple"
+            (selectionChanged)="handleSelectionChanged()">
+        </selection-search-list>
+    </div>
+</div>

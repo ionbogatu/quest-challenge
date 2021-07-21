@@ -1,0 +1,35 @@
+<div class="selection-search-list" [class.selection-search-list--opened]="isOpen">
+    <ng-container *ngIf="multiple">
+        <div class="search">
+            <fa-icon [icon]="icons.faSearch" class="search__icon"></fa-icon>
+            <input type="text" class="search__input" placeholder="Search" (keyup)="handleSearch()" #searchInputRef/>
+        </div>
+    </ng-container>
+    <div class="option-list">
+        <ng-container *ngIf="multiple && optionAll.visible">
+            <div class="option" (click)="toggleAllOptions()">
+                <div class="option__checkbox">
+                    <input type="checkbox" [checked]="optionAll.checked"/>
+                </div>
+                <div class="option__label">All</div>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="search.options.length; else noOptions">
+            <ng-container *ngFor="let option of search.options">
+                <div class="option" (click)="toggleOption(option)">
+                    <ng-container *ngIf="multiple">
+                        <div class="option__checkbox">
+                            <input type="checkbox" [checked]="option.checked"/>
+                        </div>
+                    </ng-container>
+                    <div class="option__label">{{ option.value }}</div>
+                </div>
+            </ng-container>
+        </ng-container>
+        <ng-template #noOptions>
+            <div class="option disabled">
+                <div class="option__label">No option available.</div>
+            </div>
+        </ng-template>
+    </div>
+</div>
